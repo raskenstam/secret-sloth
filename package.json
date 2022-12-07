@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "npx playwright test"
   },
   "dependencies": {
     "next": "latest",
@@ -13,6 +14,7 @@
     "secretjs": "^1.2.0-beta.68"
   },
   "devDependencies": {
+    "@playwright/test": "^1.28.1",
     "@styled-jsx/plugin-sass": "^4.0.2",
     "eslint": "^8.29.0",
     "eslint-config-next": "13.0.6",

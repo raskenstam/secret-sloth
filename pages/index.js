@@ -18,6 +18,7 @@ export default function Slot() {
   const [no_double, setNoDouble] = useState(false);
   const [entropy, setEntropy] = useState();
   const [slot_data_qur, setWinTable] = useState();
+  const [results, setResults] = useState();
   const [styles1, api1] = useSpring(() => ({
     from: { y: 0 },
   }));
@@ -53,6 +54,7 @@ export default function Slot() {
       setEntropy(entr);
     }
     let slot_result = Math.floor(Math.random() * 3);
+    setResults("waiting")
     console.log(slot_result);
     let tiles1 = CreatTiles(slot_data_qur);
     let tiles2 = CreatTiles(slot_data_qur);
@@ -125,7 +127,13 @@ export default function Slot() {
     api1.start(anim(time));
     api2.start(anim(time + increase));
     api3.start(anim(time + increase * 2));
-    await sleep(time);
+    await sleep(time + 900);
+    if (slot_result > 0) {
+      setResults("you won " + slot_result)
+    }
+    else {
+      setResults("you lost ")
+    }
     setNoDouble(false);
   }
   async function reset_slot() {
@@ -162,7 +170,7 @@ export default function Slot() {
           />
         </div>
         <div className="contr_data">
-
+          <p>{results}</p>
         </div>
       </main>
       <style jsx>{`
